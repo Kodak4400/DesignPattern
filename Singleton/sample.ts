@@ -1,18 +1,22 @@
-class sampleClass {
-  private static instance: sampleClass;
+class Singleton {
+  private static instance: Singleton;
 
-  constructor() {}
+  private constructor() {
+    console.log('インスタンスを生成しました。')
+  }
 
-  static getInstance() {
-    if (!sampleClass.instance) {
-      sampleClass.instance = new sampleClass();
+  public static getInstance() {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
     }
-    return sampleClass.instance;
+    return Singleton.instance;
   }
 }
 
-const ins1 = sampleClass.getInstance()
-const ins2 = sampleClass.getInstance()
+
+const ins1 = Singleton.getInstance()
+const ins2 = Singleton.getInstance()
+
 if (ins1 === ins2) {
   console.log('同じインスタンス')
 } else {

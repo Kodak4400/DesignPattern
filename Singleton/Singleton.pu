@@ -1,0 +1,6 @@
+skinparam classAttributeIconSize 0
+
+class Singleton {
+  - {static} instance
+  + {static} getInstance()
+}
