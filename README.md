@@ -19,21 +19,21 @@ ts-node sample.ts
 ## 各デザインパターンの一覧とリンク
 
 - Iterator ・・・ 1つ1つ数え上げる
-- [Adapter](https://github.com/Kodak4400/DesignPattern/Adapter) ・・・ 1皮かぶせて再利用
+- [Adapter](https://github.com/Kodak4400/DesignPattern/blob/master/Adapter) ・・・ 1皮かぶせて再利用
 
-- [Template Method](https://github.com/Kodak4400/DesignPattern/TemplateMethod) ・・・ 具体的な処理をサブクラスにまかせる
-- [Factory Method](https://github.com/Kodak4400/DesignPattern/FactoryMethod) ・・・ インスタンス作成をサブクラスにまかせる
+- [Template Method](https://github.com/Kodak4400/DesignPattern/blob/master/TemplateMethod) ・・・ 具体的な処理をサブクラスにまかせる
+- [Factory Method](https://github.com/Kodak4400/DesignPattern/blob/master/FactoryMethod) ・・・ インスタンス作成をサブクラスにまかせる
 
-- [Singleton](https://github.com/Kodak4400/DesignPattern/Singleton) ・・・ たった1つのインスタンス
-- [Prototype](https://github.com/Kodak4400/DesignPattern/Prototype) ・・・ コピーしてインスタンスを作る
-- [Builder](https://github.com/Kodak4400/DesignPattern/Builder) ・・・ 複雑なインスタンスを組み立てる
+- [Singleton](https://github.com/Kodak4400/DesignPattern/blob/master/Singleton) ・・・ たった1つのインスタンス
+- [Prototype](https://github.com/Kodak4400/DesignPattern/blob/master/Prototype) ・・・ コピーしてインスタンスを作る
+- [Builder](https://github.com/Kodak4400/DesignPattern/blob/master/Builder) ・・・ 複雑なインスタンスを組み立てる
 - Abstract Factory ・・・ 関連する部品を組み合わせて製品を作る
 
-- [Bridge](https://github.com/Kodak4400/DesignPattern/Bridge) ・・・ 機能の階層と実装の階層を分ける
+- [Bridge](https://github.com/Kodak4400/DesignPattern/blob/master/Bridge) ・・・ 機能の階層と実装の階層を分ける
 - Strategy ・・・ アルゴリズムをごっそり切り替える
 
 - Composite ・・・ 容器の中身と同一視
-- [Decorator](https://github.com/Kodak4400/DesignPattern/Decorator) ・・・ 飾り枠と中身の同一視
+- [Decorator](https://github.com/Kodak4400/DesignPattern/blob/master/Decorator) ・・・ 飾り枠と中身の同一視
 
 - Visitor ・・・ 構造を渡り歩きながら仕事をする
 - Chain of Responsibility ・・・ 責任のたらい回し
