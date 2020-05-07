@@ -30,7 +30,9 @@
 class Singleton {
   private static instance: Singleton;
 
-  private constructor() {}
+  private constructor() {
+    console.log('インスタンスを生成しました。')
+  }
 
   public static getInstance() {
     if (!Singleton.instance) {
@@ -50,6 +52,13 @@ if (ins1 === ins2) {
 } else {
   console.log('異なるインスタンス')
 }
+```
+
+```shell:動作確認結果
+# 動作確認結果
+$ ts-node sample.ts 
+インスタンスを生成しました。
+同じインスタンス
 ```
   
 ポイントは、`constructor`関数が`private`であることです。  
