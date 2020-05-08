@@ -5,7 +5,7 @@ abstract class AbstractDisplay {
   public abstract close(): void;
   public display() {
     this.open();
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 2; i++) {
       this.print();
     }
     this.close();

@@ -1,0 +1,24 @@
+skinparam classAttributeIconSize 0
+
+AbstractClass <|-- ConcreteClass1
+AbstractClass <|-- ConcreteClass2
+
+class AbstractClass {
+  AbstractClass()
+  method1()
+  method2()
+  commonMethod1()
+  commonMethod2()
+}
+
+class ConcreteClass1 {
+  ConcreteClass1()
+  method1()
+  method2()
+}
+
+class ConcreteClass2 {
+  ConcreteClass2()
+  method1()
+  method2()
+}
