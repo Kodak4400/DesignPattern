@@ -1,69 +1,43 @@
-// interface Iterator<T> {
-//   hasNext(): boolean;
-//   next(): any;
+// interface IteratorResult<T> {
+//   done: boolean;
+//   value: T;
 // }
-interface Iterator<T> {
-  next(): IteratorResult<T>;
-  return?(value?: any): IteratorResult<T>;
-  throw?(e?: any): IteratorResult<T>;
+
+// interface Iterator<T> {
+//   next(value?: any): IteratorResult<T>;
+//   return?(value?: any): IteratorResult<T>;
+//   throw?(e?: any): IteratorResult<T>;
+// }
+
+class Component {
+  constructor(public name: string) {}
 }
 
-interface Aggregate {
-  iterator(): Iterator;
-}
+class AppleProduct implements Iterator<Component> {
+  private pointer = 0;
 
-class Book {
-  constructor(private name: string) {}
+  constructor(public name: string, public components: Component[]) {}
 
-  public getName() {
-    return this.name;
-  }
-}
-
-class BookShelf implements Aggregate {
-  private books: Book[];
-  constructor(private last: number) {}
-
-  public getBookAt(index: number) {
-    return this.books[index];
-  }
-
-  public appendBook(book: Book) {
-    this.books[this.last] = book;
-    this.last++;
-  }
-
-  public getLength() {
-    return this.last;
-  }
-
-  public iterator() {
-    return new BookShelfIterator(this);
+  public next(): IteratorResult<Component> {
+    if (this.pointer < this.components.length) {
+      return {
+        done: false,
+        value: this.components[this.pointer++],
+      };
+    } else {
+      return {
+        done: true,
+        value: 'データなし'
+      };
+    }
   }
 }
 
-class BookShelfIterator implements Iterator {
-  constructor(private bookShelf: BookShelf, private index: number = 0) {}
+let mac = new AppleProduct("mac", [new Component("macbook"), new Component("macbook pro"), new Component("macbook air"), new Component("mac mini")]);
+console.log(mac.next())
+console.log(mac.next())
+console.log(mac.next())
+console.log(mac.next())
+console.log(mac.next())
 
-  public hasNext() {
-    return this.index < this.bookShelf.getLength() ? true : false;
-  }
 
-  public next() {
-    const book = this.bookShelf.getBookAt(this.index);
-    this.index++;
-    return book;
-  }
-}
-
-const bookShelf = new BookShelf(4);
-bookShelf.appendBook(new Book("Around the World in 80 Days"));
-bookShelf.appendBook(new Book("Bible"));
-bookShelf.appendBook(new Book("Cinderella"));
-bookShelf.appendBook(new Book("Daddy-Long-Legs"));
-
-const it: Iterator = bookShelf.iterator();
-while (it.hasNext()) {
-  let book: Book = it.next();
-  console.log(book.getName());
-}
