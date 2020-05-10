@@ -69,6 +69,14 @@ class Files extends Entry {
 
 const rootdir: Directory = new Directory("root");
 const bindir: Directory = new Directory("bin");
+const tmpdir: Directory = new Directory("tmp");
+const usrdir: Directory = new Directory("usr");
 rootdir.add(bindir);
+rootdir.add(tmpdir);
+rootdir.add(usrdir);
 bindir.add(new Files("vi", 10000));
+bindir.add(new Files("latex", 20000));
+tmpdir.add(new Files("diary.html", 100));
+tmpdir.add(new Files("Composite.java", 200));
+usrdir.add(new Files("memo.tex", 500))
 rootdir.printList();

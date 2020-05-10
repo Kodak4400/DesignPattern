@@ -37,7 +37,7 @@ ts-node sample.ts
 - [Strategy](https://github.com/Kodak4400/DesignPattern/blob/master/Strategy) ・・・ アルゴリズムをごっそり切り替える
 
 ### 同一視
-- Composite ・・・ 容器の中身と同一視
+- [Composite](https://github.com/Kodak4400/DesignPattern/blob/master/Composite) ・・・ 容器の中身と同一視
 - [Decorator](https://github.com/Kodak4400/DesignPattern/blob/master/Decorator) ・・・ 飾り枠と中身の同一視
 
 ### 構造を渡り歩く
@@ -45,7 +45,7 @@ ts-node sample.ts
 - Chain of Responsibility ・・・ 責任のたらい回し
 
 ### シンプルにする
-- Facade ・・・ シンプルな窓口
+- [Facade](https://github.com/Kodak4400/DesignPattern/blob/master/Facade) ・・・ シンプルな窓口
 - Mediator ・・・ 相手は相談役一人だけ
 
 ### 状態を管理する
