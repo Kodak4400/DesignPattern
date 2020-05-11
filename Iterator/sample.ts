@@ -9,20 +9,42 @@
 //   throw?(e?: any): IteratorResult<T>;
 // }
 
-class Component {
-  constructor(public name: string) {}
+interface Aggregate<T> {
+  iterator(): Iterator<T>;
 }
 
-class AppleProduct implements Iterator<Component> {
+class AppleProduct implements Aggregate<Product> {
+  private product: Product[] = [];
+
+  constructor() {}
+
+  public show(i: number) {
+    return this.product[i]
+  }
+
+  public add(p: Product) {
+    this.product.push(p)
+  }
+
+  public getLength() {
+    return this.product.length
+  }
+
+  public iterator(): Iterator<Product> {
+    return new AppleProductIterator(this)
+  }
+}
+
+class AppleProductIterator implements Iterator<Product>{
   private pointer = 0;
 
-  constructor(public name: string, public components: Component[]) {}
+  constructor(private appleproduct : AppleProduct) {}
 
-  public next(): IteratorResult<Component> {
-    if (this.pointer < this.components.length) {
+  public next(): IteratorResult<Product> {
+    if (this.pointer < this.appleproduct.getLength()) {
       return {
         done: false,
-        value: this.components[this.pointer++],
+        value: this.appleproduct.show(this.pointer++),
       };
     } else {
       return {
@@ -33,11 +55,48 @@ class AppleProduct implements Iterator<Component> {
   }
 }
 
-let mac = new AppleProduct("mac", [new Component("macbook"), new Component("macbook pro"), new Component("macbook air"), new Component("mac mini")]);
-console.log(mac.next())
-console.log(mac.next())
-console.log(mac.next())
-console.log(mac.next())
-console.log(mac.next())
+class Product {
+  constructor(public name: string) {}
+}
+
+const mac = new AppleProduct()
+mac.add(new Product("macbook"))
+mac.add(new Product("macbook pro"))
+mac.add(new Product("macbook air"))
+mac.add(new Product("mac mini"))
+const itr = mac.iterator();
+console.log(itr.next())
+console.log(itr.next())
+console.log(itr.next())
+console.log(itr.next())
+console.log(itr.next())
+
+
+// class AppleProduct implements Iterator<Product> {
+//   private pointer = 0;
+
+//   constructor(public name: string, public components: Product[]) {}
+
+//   public next(): IteratorResult<Product> {
+//     if (this.pointer < this.components.length) {
+//       return {
+//         done: false,
+//         value: this.components[this.pointer++],
+//       };
+//     } else {
+//       return {
+//         done: true,
+//         value: 'データなし'
+//       };
+//     }
+//   }
+// }
+
+// let mac = new AppleProduct("mac", [new Product("macbook"), new Product("macbook pro"), new Product("macbook air"), new Product("mac mini")]);
+// console.log(mac.next())
+// console.log(mac.next())
+// console.log(mac.next())
+// console.log(mac.next())
+// console.log(mac.next())
 
 

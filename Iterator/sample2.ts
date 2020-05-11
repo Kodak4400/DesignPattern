@@ -1,11 +1,11 @@
-interface Iterator {
-  hasNext(): boolean;
-  next(): any;
-}
+// interface Iterator {
+//   hasNext(): boolean;
+//   next(): any;
+// }
 
-interface Aggregate {
-  iterator(): Iterator;
-}
+// interface Aggregate {
+//   iterator(): Iterator;
+// }
 
 class Book {
   constructor(private name: string) {}
