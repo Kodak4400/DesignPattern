@@ -1,0 +1,28 @@
+skinparam classAttributeIconSize 0
+
+Iterator <|-- Agregate
+Agregate <|-- ConcreteAgregate
+Iterator <|-- ConcreteIterator
+ConcreteIterator o--> ConcreteAgregate
+ConcreteAgregate o--> Target
+
+interface Iterator {
+  next()  
+}
+
+interface Agregate {
+  iterator()
+}
+
+class ConcreteAgregate {
+  iterator()
+}
+
+class Target {
+
+}
+
+class ConcreteIterator {
+  pointer
+  next()
+}

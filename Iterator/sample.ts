@@ -70,33 +70,3 @@ console.log(itr.next())
 console.log(itr.next())
 console.log(itr.next())
 console.log(itr.next())
-
-
-// class AppleProduct implements Iterator<Product> {
-//   private pointer = 0;
-
-//   constructor(public name: string, public components: Product[]) {}
-
-//   public next(): IteratorResult<Product> {
-//     if (this.pointer < this.components.length) {
-//       return {
-//         done: false,
-//         value: this.components[this.pointer++],
-//       };
-//     } else {
-//       return {
-//         done: true,
-//         value: 'データなし'
-//       };
-//     }
-//   }
-// }
-
-// let mac = new AppleProduct("mac", [new Product("macbook"), new Product("macbook pro"), new Product("macbook air"), new Product("mac mini")]);
-// console.log(mac.next())
-// console.log(mac.next())
-// console.log(mac.next())
-// console.log(mac.next())
-// console.log(mac.next())
-
-
