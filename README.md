@@ -41,7 +41,7 @@ ts-node sample.ts
 - [Decorator](https://github.com/Kodak4400/DesignPattern/blob/master/Decorator) ・・・ 飾り枠と中身の同一視
 
 ### 構造を渡り歩く
-- Visitor ・・・ 構造を渡り歩きながら仕事をする
+- [Visitor](https://github.com/Kodak4400/DesignPattern/blob/master/Visitor) ・・・ 構造を渡り歩きながら仕事をする
 - Chain of Responsibility ・・・ 責任のたらい回し
 
 ### シンプルにする
