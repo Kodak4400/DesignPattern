@@ -14,12 +14,11 @@
 ①：既存のクラスに対して直接修正をせずに、処理の動作を変更、再利用したい場合
 
 ## クラス図
-![AdapterClassDiagram](https://github.com/Kodak4400/DesignPattern/blob/master/Iterator/Iterator.png)
+![AdapterClassDiagram](https://github.com/Kodak4400/DesignPattern/blob/master/Iterator/Adapter.png)
 
-- Agregate: 集約したオブジェクトを表すInterface。ここで`Iterator`を作ります。
-- ConcreteAgregate：集約したオブジェクトで使用する具体的な処理を実装する。サンプルコードでは、AppleProductが該当。
-- Target: 集合の対象。サンプルコードでは、Productが該当。
-- ConcreteIterator：集約したオブジェクトを列挙、スキャンする処理を実装する。サンプルコードでは、AppleProductIteratorが該当。
+- Target: Adapterを定義したInterface。サンプルコードでは、Targetが該当。
+- Adapter: Targetで定義した具体的な処理を実装します。サンプルコードでは、Adapterが該当。
+- Adaptee: 既存のクラス（Targetの対象クラス）。サンプルコードでは、AdapterSampleClassが該当。
 
 ## サンプルコード
 ```TypeScript:Adapter.ts
@@ -70,13 +69,13 @@ $ ts-node sample.ts
   
 ポイントは、既存のクラス（`AdapterSampleClass`）を新しいインタフェース（`Target`）に適合させていることです。 
   
-つまり、既存のクラスに対して直接修正をせずに、インタフェースに合わせたクラスを作ることができます。
-
+つまり、既存のクラスに対して直接修正をせずに、インタフェースに合わせたクラスを作ることができます。  
+クラスの書き換えなので、既存のクラスとあまりにかけ離れたクラスを作るのはNGですね。  
 
 ## おわりに
-個人的に「Iterator」の使用頻度はあまり高くない気がしていますが、デザインパターンの基本として、必ず出てくるので覚えておきたい。  
-「列挙する」という処理の一部を切り離せるという考え方は、デザインパターンの基本なので、こういった考え方を定着させたいですね。  
+「Adapter」は既存のクラスを書き換えて、違うクラスにしてしまうので使用に注意が必要だと思いました。  
+とはいえ、既存のクラスを触らずに別のクラスを作成できるのは、既存のクラスに対してテストが不要だということなので、便利な面もあると思いました。  
+使うときは慎重にしたいパターンの1つですね。  
 
 ## 参考文献
 - [Java言語で学ぶデザインパターン入門](https://www.amazon.co.jp/%E5%A2%97%E8%A3%9C%E6%94%B9%E8%A8%82%E7%89%88-Java%E8%A8%80%E8%AA%9E%E3%81%A7%E5%AD%A6%E3%81%B6%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E5%85%A5%E9%96%80-%E7%B5%90%E5%9F%8E-%E6%B5%A9-ebook/dp/B00I8ATHGW/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=Java%E8%A8%80%E8%AA%9E%E3%81%A7%E5%AD%A6%E3%81%B6%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E5%85%A5%E9%96%80&qid=1588525185&sr=8-1)
-- [TypeScript Deep Dive 日本語版(iterators)](https://typescript-jp.gitbook.io/deep-dive/future-javascript/iterators)

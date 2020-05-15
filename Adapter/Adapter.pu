@@ -1,0 +1,20 @@
+skinparam classAttributeIconSize 0
+
+Target <|-- Adapter
+Adapter o--> Adaptee
+
+class Adapter {
+  Adaptee
+  targetMethod1()
+  targetMethod2()
+}
+
+interface Target {
+  targetMethod1()
+  targetMethod2()
+}
+
+class Adaptee {
+  method1()
+  method2()
+}
