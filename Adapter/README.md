@@ -14,7 +14,7 @@
 ①：既存のクラスに対して直接修正をせずに、処理の動作を変更、再利用したい場合
 
 ## クラス図
-![AdapterClassDiagram](https://github.com/Kodak4400/DesignPattern/blob/master/Iterator/Adapter.png)
+![AdapterClassDiagram](https://github.com/Kodak4400/DesignPattern/blob/master/Adapter/Adapter.png)
 
 - Target: Adapterを定義したInterface。サンプルコードでは、Targetが該当。
 - Adapter: Targetで定義した具体的な処理を実装します。サンプルコードでは、Adapterが該当。
