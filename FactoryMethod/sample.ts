@@ -1,52 +1,48 @@
-class factorySampleClass {
-    constructor(private msg: string) {}
+abstract class Product {
+    constructor() {}
+    public abstract use(): void;
+}
 
+abstract class Factory {
+    constructor() {}
+    public create(msg: string): Product {
+        const productInstance: Product = this.createProduct(msg)
+        this.registerProduct(productInstance)
+        return productInstance
+    }
+    protected abstract createProduct(msg: string): Product
+    protected abstract registerProduct(productInstance: Product): void
+}
+
+class concreteProduct {
+    constructor(private msg: string) {}
     public use() {
         console.log(`Message: ${this.msg}`)
     }
-
     public getMessage() {
         return this.msg
     }
 }
 
-abstract class Factory {
-    protected abstract createFactorySample(msg: string)
-    protected abstract registerFactorySample(factorySampleInstance: factorySampleClass)
-
-    constructor() {}
-
-    public create(msg: string): factorySampleClass {
-        const factorySampleInstance = this.createFactorySample(msg)
-        this.registerFactorySample(factorySampleInstance)
-        return factorySampleInstance
-    }
-}
-
-class subFactory extends Factory {
-    private messages: string[] = []
-
-    constructor() {
+class concreteFactory extends Factory {
+    constructor(private messages: string[] = []) {
         super()
     }
-
-    protected createFactorySample(msg: string) {
-        return new factorySampleClass(msg)
+    protected createProduct(msg: string) {
+        return new concreteProduct(msg)
     }
-
-    protected registerFactorySample(factorySampleInstance: factorySampleClass) {
-        this.messages.push(factorySampleInstance.getMessage())
+    protected registerProduct(productInstance: concreteProduct) {
+        this.messages.push(productInstance.getMessage())
     }
-
     public getMessages() {
         console.log(this.messages)
     }
 }
 
-const factory = new subFactory
-const factorySampleInstance1 = factory.create('hoge')
-const factorySampleInstance2 = factory.create('fuga')
-const factorySampleInstance3 = factory.create('piyo')
+const factory = new concreteFactory
+const factorySampleInstance1 = factory.create('おはようございます')
+const factorySampleInstance2 = factory.create('こんにちは')
+const factorySampleInstance3 = factory.create('さようなら')
 factorySampleInstance1.use()
 factorySampleInstance2.use()
 factorySampleInstance3.use()

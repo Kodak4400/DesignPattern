@@ -1,0 +1,27 @@
+skinparam classAttributeIconSize 0
+
+Factory --> Product: Create
+concreteFactory --> concreteProduct: Create
+Factory <|-- concreteFactory
+Product <|-- concreteProduct
+
+class Factory {
+  + create()
+  # createProduct()
+  # registerProduct()
+}
+
+class Product {
+  + use()
+}
+
+class concreteFactory {
+  + concreteFactory()
+  # createProduct()
+  # registerProduct()
+}
+
+class concreteProduct {
+  + concreteProduct()
+  + use()
+}
