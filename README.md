@@ -42,7 +42,7 @@ ts-node sample.ts
 
 ### 構造を渡り歩く
 - [Visitor](https://github.com/Kodak4400/DesignPattern/blob/master/Visitor) ・・・ 構造を渡り歩きながら仕事をする
-- Chain of Responsibility ・・・ 責任のたらい回し
+- [Chain of Responsibility](https://github.com/Kodak4400/DesignPattern/blob/master/ChainOfResponsibility) ・・・ 責任のたらい回し
 
 ### シンプルにする
 - [Facade](https://github.com/Kodak4400/DesignPattern/blob/master/Facade) ・・・ シンプルな窓口
