@@ -46,7 +46,7 @@ ts-node sample.ts
 
 ### シンプルにする
 - [Facade](https://github.com/Kodak4400/DesignPattern/blob/master/Facade) ・・・ シンプルな窓口
-- Mediator ・・・ 相手は相談役一人だけ
+- [Mediator](https://github.com/Kodak4400/DesignPattern/blob/master/Mediator) ・・・ 相手は相談役一人だけ
 
 ### 状態を管理する
 - Observer ・・・ 状態の変化を通知する
