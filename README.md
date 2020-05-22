@@ -49,7 +49,7 @@ ts-node sample.ts
 - [Mediator](https://github.com/Kodak4400/DesignPattern/blob/master/Mediator) ・・・ 相手は相談役一人だけ
 
 ### 状態を管理する
-- Observer ・・・ 状態の変化を通知する
+- [Observer](https://github.com/Kodak4400/DesignPattern/blob/master/Observer) ・・・ 状態の変化を通知する
 - Memento ・・・ 状態を保存する
 - State ・・・ 状態をクラスとして表現する
 
