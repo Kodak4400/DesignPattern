@@ -1,0 +1,20 @@
+skinparam classAttributeIconSize 0
+
+ProtoType <|-- ConcreteProtoType
+Manager --> ProtoType: use
+
+interface ProtoType {
+  + use()
+  + createClone()
+}
+
+class ConcreteProtoType {
+  + use()
+  + createClone()
+}
+
+class Manager {
+  - incStorage
+  + register()
+  + create()
+}

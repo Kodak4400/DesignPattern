@@ -1,41 +1,35 @@
-
-interface protoType {
-    use(str: string): void
-    createClone(): protoType
+interface ProtoType {
+  use(str: string): void;
+  createClone(): ProtoType;
 }
 
-class concretePrototype implements protoType {
-    constructor(private char: string) {}
-
-    public use(str: string) {
-        console.log(`${this.char}-${str}-${this.char}`)
-    }
-
-    public createClone(): protoType {
-        return Object.create(this)
-    }
+class ConcreteProtoType implements ProtoType {
+  constructor(private decorate: string) {}
+  public use(str: string) {
+    console.log(`${this.decorate}- ${str} -${this.decorate}`);
+  }
+  public createClone(): ProtoType {
+    return Object.create(this); // 自分のインスタンスを作成する。シャローコピーです。
+  }
 }
 
-class manager {
-    private showcase: { [key: string]: protoType } = {}
-
-    constructor() {}
-
-    public register(name: string, prototype: protoType) {
-        this.showcase[name] = prototype
-    }
-
-    public create(name: string): protoType {
-        const p: protoType = this.showcase[name]
-        return p.createClone()
-    }
+class Manager {
+  constructor() {}
+  private incStorage: { [key: string]: ProtoType } = {};
+  public register(name: string, p: ProtoType) {
+    this.incStorage[name] = p;
+  }
+  public create(name: string): ProtoType {
+    const p: ProtoType = this.incStorage[name];
+    return p.createClone();
+  }
 }
 
-const m = new manager()
+const m = new Manager();
+const protoType: ProtoType = new ConcreteProtoType("@");
+protoType.use("protoTypeInstancMessage");
 
-const cPrototype: protoType = new concretePrototype('@')
-cPrototype.use('aaaaa')
-m.register('hoge', cPrototype)
+m.register("pInstanceCopy", protoType);
 
-const ccPrototype: protoType = m.create('hoge')
-ccPrototype.use('aaaa')
+const protoTypeClone: ProtoType = m.create("pInstanceCopy");
+protoTypeClone.use("protoTypeCloneInstancMessage");
