@@ -6,35 +6,57 @@ abstract class Builder {
 }
 
 class TextBuilder extends Builder {
-  constructor(private buffer: string[] = []) {
+  constructor() {
     super();
   }
-
+  private store: string[] = [];
   public makeTitle(title: string) {
-    this.buffer.push("==============================");
-    this.buffer.push(`${title}`);
+    this.store.push("==============================");
+    this.store.push(`${title}`);
   }
-
   public makeString(str: string) {
-    this.buffer.push(`${str}`);
+    this.store.push(`${str}`);
   }
-
   public makeItems(items: string[]) {
-    this.buffer.push(items.join(","));
+    this.store.push(items.join(","));
   }
-
   public close() {
-    this.buffer.push("==============================");
+    this.store.push("==============================");
   }
-
   public getResult(): string {
-    return this.buffer.join("\n");
+    return this.store.join("\n");
+  }
+}
+
+class HtmlBuilder extends Builder {
+  constructor() {
+    super();
+  }
+  private store: string[] = [];
+  public makeTitle(title: string) {
+    this.store.push("------------------------------");
+    this.store.push(`<h1>${title}</h1>`);
+  }
+  public makeString(str: string) {
+    this.store.push(`<p>${str}</p>`);
+  }
+  public makeItems(items: string[]) {
+    this.store.push("<ul>");
+    items.forEach((item) => {
+      this.store.push(`<li>${item}</li>`);
+    });
+    this.store.push("</ul>");
+  }
+  public close() {
+    this.store.push("------------------------------");
+  }
+  public getResult(): string {
+    return this.store.join("\n");
   }
 }
 
 class Director {
   constructor(private builder: Builder) {}
-
   public construct() {
     this.builder.makeTitle("Greeting");
     this.builder.makeString("Hello. This class is follows");
@@ -43,45 +65,14 @@ class Director {
   }
 }
 
-class HTMLBuilder extends Builder {
-  constructor(private buffer: string[] = []) {
-    super();
-  }
-
-  public makeTitle(title: string) {
-    this.buffer.push("------------------------------");
-    this.buffer.push(`<h1>${title}</h1>`);
-  }
-
-  public makeString(str: string) {
-    this.buffer.push(`<p>${str}</p>`);
-  }
-
-  public makeItems(items: string[]) {
-    this.buffer.push("<ul>");
-    items.forEach((item) => {
-      this.buffer.push(`<li>${item}</li>`);
-    });
-    this.buffer.push("</ul>");
-  }
-
-  public close() {
-    this.buffer.push("------------------------------");
-  }
-
-  public getResult(): string {
-    return this.buffer.join("\n");
-  }
-}
-
 const textBuilder: TextBuilder = new TextBuilder();
 const textDirector: Director = new Director(textBuilder);
 textDirector.construct();
-let textResult: string = textBuilder.getResult();
+const textResult: string = textBuilder.getResult();
 console.log(textResult);
 
-const htmlbuilder: HTMLBuilder = new HTMLBuilder();
-const htmlDirector: Director = new Director(htmlbuilder);
+const htmlBuilder: HtmlBuilder = new HtmlBuilder();
+const htmlDirector: Director = new Director(htmlBuilder);
 htmlDirector.construct();
-let htmlResult: string = htmlbuilder.getResult();
+const htmlResult: string = htmlBuilder.getResult();
 console.log(htmlResult);

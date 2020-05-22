@@ -1,0 +1,31 @@
+skinparam classAttributeIconSize 0
+
+Builder <|-- ConcreteBuilder1
+Builder <|-- ConcreteBuilder2
+Director o--> Builder
+
+abstract class Builder {
+  # buildMethod1()
+  # buildMethod2()
+  # buildMethod3()
+  # buildMethod4()
+}
+
+class ConcreteBuilder1 {
+  + buildMethod1()
+  + buildMethod2()
+  + buildMethod3()
+  + buildMethod4()
+}
+
+class ConcreteBuilder2 {
+  + buildMethod1()
+  + buildMethod2()
+  + buildMethod3()
+  + buildMethod4()
+}
+
+class Director {
+  - builder
+  + Director()
+}
