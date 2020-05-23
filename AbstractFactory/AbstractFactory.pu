@@ -1,0 +1,54 @@
+
+skinparam classAttributeIconSize 0
+
+  Factory <|-- ConcreateFactory
+  Product1 <|-- ConcreateProduct1
+  Product2 <|-- ConcreateProduct2
+  Product3 <|-- ConcreateProduct3
+
+  Factory --> Product1: Create
+  Factory --> Product2: Create
+  Factory --> Product3: Create
+
+
+ConcreateFactory --> ConcreateProduct1: Create
+ConcreateFactory --> ConcreateProduct2: Create
+ConcreateFactory --> ConcreateProduct3: Create
+
+
+  abstract class Factory {
+    # createProduct1()
+    # createProduct2()
+    # createProduct3()
+  }
+
+  abstract class Product1 {
+    # method1()
+  }
+
+  abstract class Product2 {
+    # method1()
+  }
+
+  abstract class Product3 {
+    # method1()
+  }
+
+
+class ConcreateFactory {
+  + createProduct1()
+  + createProduct2()
+  + createProduct3()
+}
+
+class ConcreateProduct1 {
+  + method1()
+}
+
+class ConcreateProduct2 {
+  + method1()
+}
+
+class ConcreateProduct3 {
+  + method1()
+}
