@@ -50,7 +50,7 @@ abstract class Page {
 
 // -----------------------------------------------------
 
-class ListFactory extends Factory {
+class ConcreteFactory extends Factory {
   constructor() {
     super();
   }
@@ -70,7 +70,7 @@ class ListLink extends Link {
     super(caption, url);
   }
   public makeHTML() {
-    return `url=${this.url} caption=${this.caption}`;
+    return `<a href="${this.url}" alt="${this.caption}"></a>`;
   }
 }
 
@@ -80,35 +80,41 @@ class ListTray extends Tray {
   }
   public makeHTML() {
     let buffer: string[] = [];
-    console.log(this.caption);
+    buffer.push(`<p>${this.caption}</p>`);
+    buffer.push("<ul>");
     this.tray.forEach((item) => {
-      buffer.push(item.makeHTML());
+      buffer.push(`<li>${item.makeHTML()}</li>`);
     });
+    buffer.push("</ul>");
     return buffer.join("\n");
   }
 }
 
 class ListPage extends Page {
-  constructor(protected title: string, protected author: string) {
-    super(title, author);
+  constructor(protected title: string, protected pages: string) {
+    super(title, pages);
   }
   public makeHTML() {
     let buffer: string[] = [];
-    buffer.push(this.title);
-    buffer.push(this.author);
-    return buffer.join(",");
+    buffer.push(`<h1>${this.title}</h1>`);
+    this.content.forEach((item) => {
+      buffer.push(item.makeHTML());
+    });
+    buffer.push(`<a>Page: ${this.pages}</a>>`);
+    return buffer.join("\n");
   }
 }
 
-const factory: Factory = Factory.getInstance(new ListFactory());
+const factory: Factory = Factory.getInstance(new ConcreteFactory());
 
 const us_yahoo = factory.createLink("Yahoo!", "http://www.yahoo.com/");
 const jp_yahoo = factory.createLink("Yahoo!Japan", "http://www.yahoo.co.jp/");
-const trayyahoo = factory.createTray("Yahoo!");
+const trayyahoo = factory.createTray("Link List!!");
 
 trayyahoo.add(us_yahoo);
 trayyahoo.add(jp_yahoo);
-trayyahoo.output();
-let page = factory.createPage("LinkPage", "page");
+// trayyahoo.output();
+
+const page = factory.createPage("Yahoo!! Link Page", "1");
 page.add(trayyahoo);
 page.output();
