@@ -5,125 +5,162 @@
 今回は、「Abstract Factory」です。  
 
 ## 「Abstract Factory」パターンとは？
-インスタンスを生成するパターンの1つ。一気に完成させたインスタンスを作るのではなく、部品を組み上げてインスタンス作るデザインパターン。
+インスタンスを生成するパターンの1つ。抽象的な工場や部品、製品を組み合わせて実装していく。具体的な実装には注目せず、インタフェース（API）に注目して実装していくパターン。
 
 ## どんな時に使うパターンなのか？
 主に以下の用途で使われるケースが多いと思います。  
   
-① 変更に強いインスタンスを作りたい場合  
+① 部品や製品の組み合わせが多い場合  
   
 一気に完成させたインスタンスを作らずに、部品を組み上げてインスタンスを作るため、変更が発生しても部品の取替だけですむ。  
 
 ## クラス図
 ![AbstractFactoryClassDiagram](https://github.com/Kodak4400/DesignPattern/blob/master/AbstractFactory/AbstractFactory.png)
 
+- Factory:
+- 
 - Builder: 関数（部品）を定義したクラス。サンプルコードでは、Builderが該当。
 - Director: 関数（部品）の組み上げ順序を記載したクラス。サンプルコードでは、Directorが該当
 - ConcreteBuilder1: 関数（部品）の具体的な内容を定義したクラス。サンプルコードでは、`TextBuilder`や`HtmlBuilder`が該当。
 - ConcreteBuilder2: 同上。
 
 ## サンプルコード
-```TypeScript:Builder.ts
-abstract class Builder {
-  public abstract makeTitle(title: string): void;
-  public abstract makeString(str: string): void;
-  public abstract makeItems(items: string[]): void;
-  public abstract close(): void;
+```TypeScript:AbstractFactory.ts
+abstract class Factory {
+  constructor() {}
+  private static instance: Factory;
+  public static getInstance(className: Factory) {
+    if (!Factory.instance) {
+      Factory.instance = className;
+    }
+    return Factory.instance;
+  }
+  public abstract createLink(caption: string, url: string): Link;
+  public abstract createTray(caption: string): Tray;
+  public abstract createPage(title: string, author: string): Page;
 }
 
-class TextBuilder extends Builder {
-  constructor() {
-    super();
-  }
-  private store: string[] = [];
-  public makeTitle(title: string) {
-    this.store.push("==============================");
-    this.store.push(`${title}`);
-  }
-  public makeString(str: string) {
-    this.store.push(`${str}`);
-  }
-  public makeItems(items: string[]) {
-    this.store.push(items.join(","));
-  }
-  public close() {
-    this.store.push("==============================");
-  }
-  public getResult(): string {
-    return this.store.join("\n");
+abstract class Item {
+  constructor(protected caption: string) {}
+  public abstract makeHTML(): string;
+}
+
+abstract class Link extends Item {
+  constructor(protected caption: string, protected url: string) {
+    super(caption);
   }
 }
 
-class HtmlBuilder extends Builder {
+abstract class Tray extends Item {
+  constructor(protected caption: string) {
+    super(caption);
+  }
+  protected tray: Item[] = [];
+  public add(item: Item) {
+    this.tray.push(item);
+  }
+  public output() {
+    console.log(this.makeHTML());
+  }
+}
+
+abstract class Page {
+  constructor(protected title: string, protected author: string) {}
+  protected content: Item[] = [];
+  public add(item: Item) {
+    this.content.push(item);
+  }
+  public output() {
+    console.log(this.makeHTML());
+  }
+  public abstract makeHTML(): string;
+}
+
+// -----------------------------------------------------
+
+class ConcreteFactory extends Factory {
   constructor() {
     super();
   }
-  private store: string[] = [];
-  public makeTitle(title: string) {
-    this.store.push("------------------------------");
-    this.store.push(`<h1>${title}</h1>`);
+  public createLink(caption: string, url: string) {
+    return new ListLink(caption, url);
   }
-  public makeString(str: string) {
-    this.store.push(`<p>${str}</p>`);
+  public createTray(caption: string) {
+    return new ListTray(caption);
   }
-  public makeItems(items: string[]) {
-    this.store.push("<ul>");
-    items.forEach((item) => {
-      this.store.push(`<li>${item}</li>`);
+  public createPage(title: string, author: string) {
+    return new ListPage(title, author);
+  }
+}
+
+class ListLink extends Link {
+  public constructor(protected caption: string, protected url: string) {
+    super(caption, url);
+  }
+  public makeHTML() {
+    return `<a href="${this.url}" alt="${this.caption}"></a>`;
+  }
+}
+
+class ListTray extends Tray {
+  constructor(protected caption: string) {
+    super(caption);
+  }
+  public makeHTML() {
+    let buffer: string[] = [];
+    buffer.push(`<p>${this.caption}</p>`);
+    buffer.push("<ul>");
+    this.tray.forEach((item) => {
+      buffer.push(`<li>${item.makeHTML()}</li>`);
     });
-    this.store.push("</ul>");
-  }
-  public close() {
-    this.store.push("------------------------------");
-  }
-  public getResult(): string {
-    return this.store.join("\n");
+    buffer.push("</ul>");
+    return buffer.join("\n");
   }
 }
 
-class Director {
-  constructor(private builder: Builder) {}
-  public construct() {
-    this.builder.makeTitle("Greeting");
-    this.builder.makeString("Hello. This class is follows");
-    this.builder.makeItems(["Director", "TextBuilder", "Builder"]);
-    this.builder.close();
+class ListPage extends Page {
+  constructor(protected title: string, protected pages: string) {
+    super(title, pages);
+  }
+  public makeHTML() {
+    let buffer: string[] = [];
+    buffer.push(`<h1>${this.title}</h1>`);
+    this.content.forEach((item) => {
+      buffer.push(item.makeHTML());
+    });
+    buffer.push(`<a>Page: ${this.pages}</a>>`);
+    return buffer.join("\n");
   }
 }
 ```
 
 ```TypeScript:Main.ts
 // 動作確認用
-const textBuilder: TextBuilder = new TextBuilder();
-const textDirector: Director = new Director(textBuilder);
-textDirector.construct();
-const textResult: string = textBuilder.getResult();
-console.log(textResult);
 
-const htmlBuilder: HtmlBuilder = new HtmlBuilder();
-const htmlDirector: Director = new Director(htmlBuilder);
-htmlDirector.construct();
-const htmlResult: string = htmlBuilder.getResult();
-console.log(htmlResult);
+const factory: Factory = Factory.getInstance(new ConcreteFactory());
+
+const us_yahoo = factory.createLink("Yahoo!", "http://www.yahoo.com/");
+const jp_yahoo = factory.createLink("Yahoo!Japan", "http://www.yahoo.co.jp/");
+const trayyahoo = factory.createTray("Link List!!");
+
+trayyahoo.add(us_yahoo);
+trayyahoo.add(jp_yahoo);
+
+const page = factory.createPage("Yahoo!! Link Page", "1");
+page.add(trayyahoo);
+page.output();
 ```
 
 ```shell:動作確認結果
 # 動作確認結果
 $ ts-node sample.ts 
-==============================
-Greeting
-Hello. This class is follows
-Director,TextBuilder,Builder
-==============================
-------------------------------
-<h1>Greeting</h1>
-<p>Hello. This class is follows</p>
+<h1>Yahoo!! Link Page</h1>
+<p>Link List!!</p>
 <ul>
-<li>Director</li>
-<li>TextBuilder</li>
-<li>Builder</li>
+<li><a href="http://www.yahoo.com/" alt="Yahoo!"></a></li>
+<li><a href="http://www.yahoo.co.jp/" alt="Yahoo!Japan"></a></li>
 </ul>
-------------------------------
+<a>Page: 1</a>>
 ```
   
 ポイントは、`Builder`の関数（部品）の定義方法。  
