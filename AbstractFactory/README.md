@@ -17,12 +17,11 @@
 ## クラス図
 ![AbstractFactoryClassDiagram](https://github.com/Kodak4400/DesignPattern/blob/master/AbstractFactory/AbstractFactory.png)
 
-- Factory:
-- 
-- Builder: 関数（部品）を定義したクラス。サンプルコードでは、Builderが該当。
-- Director: 関数（部品）の組み上げ順序を記載したクラス。サンプルコードでは、Directorが該当
-- ConcreteBuilder1: 関数（部品）の具体的な内容を定義したクラス。サンプルコードでは、`TextBuilder`や`HtmlBuilder`が該当。
-- ConcreteBuilder2: 同上。
+- Factory:関数（工場）を定義したクラス。newするだけで、関数（部品）、関数（製品）が用意される。サンプルコードでは、`Factory`が該当。
+- ConcreateFactory:関数（工場）の具体的な内容を定義したクラス。サンプルコードでは、`ConcreateFactory`が該当
+- Product1〜3:関数（部品、製品）を定義したクラス。サンプルコードでは、`Item`、`Link`、`Tray`、`Page`が該当。
+- ConcreateProduct1〜3:関数（部品、製品）の具体的な内容を定義したクラス。サンプルコードでは、`ListLink`、`ListTray`、`ListPage`が該当。
+
 
 ## サンプルコード
 ```TypeScript:AbstractFactory.ts
@@ -163,12 +162,12 @@ $ ts-node sample.ts
 <a>Page: 1</a>>
 ```
   
-ポイントは、`Builder`の関数（部品）の定義方法。  
-上記はテキストだけで、2つのパターン（文字列とHTML）を作ることができた。  
-どう関数（部品）を定義するのかが重要。  
+ポイントは、`Factory`の関数（工場）の定義方法。  
+あらかじめ抽象的な部品をココで用意しておかないと、後から部品を追加するのは工場自体修正しないといけなくなるため、修正が大変。  
+逆に、すでに存在する抽象的な部品から具体的な部品を作るのは簡単。  
   
 ## おわりに
-色々なところで使えそうなデザインパターンです。  
+これ、ぜったいコードを読むのが大変なパターン・・・  
 
 ## 参考文献
 - [Java言語で学ぶデザインパターン入門](https://www.amazon.co.jp/%E5%A2%97%E8%A3%9C%E6%94%B9%E8%A8%82%E7%89%88-Java%E8%A8%80%E8%AA%9E%E3%81%A7%E5%AD%A6%E3%81%B6%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E5%85%A5%E9%96%80-%E7%B5%90%E5%9F%8E-%E6%B5%A9-ebook/dp/B00I8ATHGW/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=Java%E8%A8%80%E8%AA%9E%E3%81%A7%E5%AD%A6%E3%81%B6%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E5%85%A5%E9%96%80&qid=1588525185&sr=8-1)
