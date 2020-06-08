@@ -1,0 +1,27 @@
+
+skinparam classAttributeIconSize 0
+
+Abstraction <|-- RefinedAbstraction: 機能追加
+Implementer <--o Abstraction: Bridge
+Implementer --> ConcreateImplementer: 実装
+
+class Abstraction {
+  - Implementer: impl
+  + method1()
+  + method2()
+  + method3()
+}
+
+class RefinedAbstraction {
+  + method4()
+}
+
+abstract class Implementer {
+  # impMethod1()
+  # impMethod2()
+}
+
+class ConcreateImplementer {
+  + impMethod1()
+  + impMethod2()
+}
