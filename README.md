@@ -54,7 +54,7 @@ ts-node sample.ts
 - [State](https://github.com/Kodak4400/DesignPattern/blob/master/State) ・・・ 状態をクラスとして表現する
 
 ### ムダをなくす
-- Flyweight ・・・ 同じものを共有してムダをなくす
+- [Flyweight](https://github.com/Kodak4400/DesignPattern/blob/master/Flyweight) ・・・ 同じものを共有してムダをなくす
 - Proxy ・・・ 必要になってから作る
 
 ### クラスで表現する
