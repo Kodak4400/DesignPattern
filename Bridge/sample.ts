@@ -8,19 +8,15 @@ class StringDisplayImpl extends DisplayImpl {
   constructor(private str: string) {
     super();
   }
-
   public rawOpen() {
     this.printLine();
   }
-
   public rawPrint() {
     console.log(`| ${this.str} |`);
   }
-
   public rawClose() {
     this.printLine();
   }
-
   private printLine() {
     let line = '+ ';
     for (let i = 0; i < this.str.length; i++) {
@@ -33,19 +29,15 @@ class StringDisplayImpl extends DisplayImpl {
 
 class Display {
   constructor(protected impl: DisplayImpl) {}
-
   public open() {
     this.impl.rawOpen();
   }
-
   public print() {
     this.impl.rawPrint();
   }
-
   public close() {
     this.impl.rawClose();
   }
-
   public display() {
     this.open();
     this.print();
@@ -57,7 +49,6 @@ class CountDisplay extends Display {
   constructor(protected impl: DisplayImpl) {
     super(impl);
   }
-
   public multiDisplay(times: number) {
     this.open();
     for (let i = 0; i < times; i++) {
@@ -67,8 +58,9 @@ class CountDisplay extends Display {
   }
 }
 
-
+// 実装クラス
 const d1: Display = new Display(new StringDisplayImpl("Hello, Japan."))
+// 機能拡張クラス
 const d2: Display = new CountDisplay(new StringDisplayImpl("Hello, World."))
 const d3: CountDisplay = new CountDisplay(new StringDisplayImpl("Hello, Universe."))
 d1.display();
