@@ -51,7 +51,7 @@ ts-node sample.ts
 ### 状態を管理する
 - [Observer](https://github.com/Kodak4400/DesignPattern/blob/master/Observer) ・・・ 状態の変化を通知する
 - [Memento](https://github.com/Kodak4400/DesignPattern/blob/master/Memento) ・・・ 状態を保存する
-- State ・・・ 状態をクラスとして表現する
+- [State](https://github.com/Kodak4400/DesignPattern/blob/master/State) ・・・ 状態をクラスとして表現する
 
 ### ムダをなくす
 - Flyweight ・・・ 同じものを共有してムダをなくす
