@@ -55,8 +55,8 @@ ts-node sample.ts
 
 ### ムダをなくす
 - [Flyweight](https://github.com/Kodak4400/DesignPattern/blob/master/Flyweight) ・・・ 同じものを共有してムダをなくす
-- Proxy ・・・ 必要になってから作る
+- [Proxy](https://github.com/Kodak4400/DesignPattern/blob/master/Proxy) ・・・ 必要になってから作る
 
 ### クラスで表現する
-- Command ・・・ 命令をクラスにする
+- [Command](https://github.com/Kodak4400/DesignPattern/blob/master/Command) ・・・ 命令をクラスにする
 - Interpreter ・・・ 文法規則をクラスで表現する
