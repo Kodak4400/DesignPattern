@@ -59,4 +59,4 @@ ts-node sample.ts
 
 ### クラスで表現する
 - [Command](https://github.com/Kodak4400/DesignPattern/blob/master/Command) ・・・ 命令をクラスにする
-- Interpreter ・・・ 文法規則をクラスで表現する
+- [Interpreter](https://github.com/Kodak4400/DesignPattern/blob/master/Interpreter) ・・・ 文法規則をクラスで表現する
