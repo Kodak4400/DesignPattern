@@ -1,0 +1,23 @@
+
+skinparam classAttributeIconSize 0
+
+Strategy <--o Context
+Strategy <|-- ConcreteStrategy1
+Strategy <|-- ConcreteStrategy2
+
+interface Strategy {
+  strategyMethod()
+}
+
+class Context {
+  strategy
+  + contextMethod()
+}
+
+class ConcreteStrategy1 {
+  + strategyMethod()
+}
+
+class ConcreteStrategy2 {
+  + strategyMethod()
+}
