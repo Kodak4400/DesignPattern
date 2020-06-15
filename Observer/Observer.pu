@@ -1,0 +1,28 @@
+skinparam classAttributeIconSize 0
+
+Subject <|-- ConcreteSubject
+Subject o--> Observer: 観察（通知）
+Observer <|-- ConcreteObserver
+
+abstract class Subject {
+  private observers
+  # addObserver()
+  # deleteObserver()
+  # notifyObservers()
+  # getSubjectStatus()
+}
+
+class ConcreteSubject {
+  + addObserver()
+  + deleteObserver()
+  + notifyObservers()
+  + getSubjectStatus()
+}
+
+interface Observer {
+  update()
+}
+
+class ConcreteObserver {
+  + update()
+}
