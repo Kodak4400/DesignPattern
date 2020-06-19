@@ -1,0 +1,29 @@
+
+skinparam classAttributeIconSize 0
+
+Component <--o Composite
+Component <|-- Leaf
+Component <|-- Composite
+
+abstract Component {
+  # method1()
+  # method2()
+  + add()
+  + remove()
+  + getChild()
+}
+
+class Leaf {
+  + method1()
+  + method2()
+}
+
+class Composite {
+  - children
+  + method1()
+  + method2()
+  + add()
+  + remove()
+  + getChild()
+}
+
