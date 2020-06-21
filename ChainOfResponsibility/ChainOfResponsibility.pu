@@ -1,0 +1,24 @@
+
+skinparam classAttributeIconSize 0
+
+Handler <-- Client: 処理を要求
+Handler <--o Handler
+Handler <|-- ConcreteHandler1
+Handler <|-- ConcreteHandler2
+
+class Client {
+
+}
+
+abstract Handler {
+  next
+  # request()
+}
+
+class ConcreteHandler1 {
+  + request()
+}
+
+class ConcreteHandler2 {
+  + request()
+}
