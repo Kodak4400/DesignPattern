@@ -1,0 +1,29 @@
+
+skinparam classAttributeIconSize 0
+
+Client --> Facade: 呼び出し
+Facade --> classA
+Facade --> classB
+Facade --> classC
+Facade --> classD
+classA --> classB
+classD --> classC
+classB <--> classC
+
+class Client {
+}
+
+class Facade {
+}
+
+class classA {
+}
+
+class classB {
+}
+
+class classC {
+}
+
+class classD {
+}
