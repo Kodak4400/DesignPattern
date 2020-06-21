@@ -1,0 +1,33 @@
+
+skinparam classAttributeIconSize 0
+
+Visitor <|-- ConcreteVisitor
+Element <--o ObjectStructure
+Element <|-- ConcreteElementA
+Element <|-- ConcreteElementB
+
+abstract Visitor {
+  # visit(ConcreteElementA)
+  # visit(ConcreteElementB)
+}
+
+class ConcreteVisitor {
+  + visit(ConcreteElementA)
+  + visit(ConcreteElementB)
+}
+
+class ObjectStructure {
+
+}
+
+interface Element {
+  # accept()
+}
+
+class ConcreteElementA {
+  + accept()
+}
+
+class ConcreteElementB {
+  + accept()
+}
