@@ -1,0 +1,40 @@
+skinparam classAttributeIconSize 0
+
+ConcreteContext o--> State
+Context <-- ConcreteContext
+State <-- ConcreteState1
+State <-- ConcreteState2
+
+class ConcreteContext {
+  private state
+  + requestX()
+  + requestY()
+  + requestZ()
+}
+
+interface Context {
+  # requestX()
+  # requestY()
+  # requestZ()
+}
+
+interface State {
+  # methodA()
+  # methodB()
+  # methodC()
+  # methodD()
+}
+
+class ConcreteState1 {
+  + methodA()
+  + methodB()
+  + methodC()
+  + methodD()
+}
+
+class ConcreteState2 {
+  + methodA()
+  + methodB()
+  + methodC()
+  + methodD()
+}
