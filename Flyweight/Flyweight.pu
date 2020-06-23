@@ -1,0 +1,18 @@
+skinparam classAttributeIconSize 0
+
+Client --> Flyweight: Uses
+FlyweightFactory o--> Flyweight: Creates
+FlyweightFactory <-- Client: Uses
+
+class Flyweight {
+  + methodA()
+  + methodB()
+}
+
+class FlyweightFactory {
+  private pool
+  + getFlyweight()
+}
+
+class Client {
+}
