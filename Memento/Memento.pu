@@ -1,0 +1,18 @@
+skinparam classAttributeIconSize 0
+
+Originator --> Memento: Creates
+Caretaker o--> Memento
+Caretaker --> Originator: Requests
+
+class Originator {
+  # createMemento()
+  # restoreMemento()
+}
+
+class Caretaker {
+}
+
+class Memento {
+  <<wide interface>>getProtectedInfo
+  <<narrow interface>>getPublicInfo
+}
