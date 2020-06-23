@@ -13,7 +13,7 @@
 ① クラス間でのやり取りが多い場合
 
 ## クラス図
-![MediatorClassDiagram](https://github.com/Kodak4400/DesignPattern/blob/master/Facade/Facade.png)
+![MediatorClassDiagram](https://github.com/Kodak4400/DesignPattern/blob/master/Mediator/Mediator.png)
 
 - Mediator:「相談役」となるインタフェース。サンプルコードでは、`Mediator`が該当。
 - ConcreteMediator: `Mediator`の具体的な内容を定義するクラス。サンプルコードでは、`LoginFrame`が該当。
