@@ -1,0 +1,28 @@
+skinparam classAttributeIconSize 0
+
+Client --> Subject: Uses
+Subject <-- Proxy
+Subject <-- RealSubject
+Proxy o--> RealSubject: Uses
+
+interface Subject {
+  # request1()
+  # request2()
+  # request3()
+}
+
+class Proxy {
+  realSubject
+  + request1()
+  + request2()
+  + request3()
+}
+
+class RealSubject {
+  + request1()
+  + request2()
+  + request3()
+}
+
+class Client {
+}
