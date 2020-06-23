@@ -1,0 +1,42 @@
+
+skinparam classAttributeIconSize 0
+
+Mediator <|-- ConcreteMediator
+Colleague o--> Mediator
+ConcreteMediator o--> concreteColleague1
+ConcreteMediator o--> concreteColleague2
+ConcreteMediator o--> concreteColleague3
+Colleague <|-- concreteColleague1
+Colleague <|-- concreteColleague2
+Colleague <|-- concreteColleague3
+
+interface Mediator {
+  # createColleagues()
+  # colleagueChanged()
+}
+
+class ConcreteMediator {
+  concreteColleague1
+  concreteColleague2
+  concreteColleague3
+  + createColleagues()
+  + colleagueChanged()
+}
+
+class concreteColleague1 {
+  + controlColleague()
+}
+
+class concreteColleague2 {
+  + controlColleague()
+}
+
+class concreteColleague3 {
+  + controlColleague()
+}
+
+interface Colleague {
+  mediator
+  + setMediator()
+  + controlColleague()
+}
