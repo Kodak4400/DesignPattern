@@ -36,9 +36,9 @@ class Invoker {
 const receiver = new Receiver;
 const invoker = new Invoker;
 
-const c1: Command = new ConcreteCommand("aaaaa");
+const c1: Command = new ConcreteCommand("Input Command c1");
 c1.setReceiver(receiver);
-const c2: Command = new ConcreteCommand("bbbbb");
+const c2: Command = new ConcreteCommand("Input Command c2");
 c2.setReceiver(receiver);
 
 invoker.addCommand(c1);

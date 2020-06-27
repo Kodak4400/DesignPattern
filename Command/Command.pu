@@ -1,0 +1,25 @@
+skinparam classAttributeIconSize 0
+
+Client --> ConcreteCommand: Creates
+ConcreteCommand o--> Receiver
+Command <|-- ConcreteCommand
+Command <--o Invoker
+
+class ConcreteCommand {
+  receiver
+  + execute()
+}
+
+class Receiver {
+  + action()
+}
+
+interface Command {
+  + execute()
+}
+
+class Invoker {
+}
+
+class Client {
+}
