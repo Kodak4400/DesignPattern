@@ -31,9 +31,6 @@ BNF(Backs Naur Form)つまり、文法を表現する表記法。今回は「ミ
 class Context {
   constructor(private text: string[]) {}
   private pointer = 0;
-  public getInfoToInterpret() {
-    // ミニ言語の構造解析
-  }
   public next() {
     if (this.pointer < this.text.length) {
       this.pointer++;

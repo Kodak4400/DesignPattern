@@ -1,9 +1,6 @@
 class Context {
   constructor(private text: string[]) {}
   private pointer = 0;
-  public getInfoToInterpret() {
-    // ミニ言語の構造解析
-  }
   public next() {
     if (this.pointer < this.text.length) {
       this.pointer++;
