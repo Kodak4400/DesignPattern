@@ -1,0 +1,27 @@
+skinparam classAttributeIconSize 0
+
+Client --> Context: Creates
+Client --> AbstractExpression: Uses
+AbstractExpression <-- TerminalExpression
+AbstractExpression <-- NonterminalExpression
+NonterminalExpression o--> AbstractExpression
+
+class Context {
+  + getInfoToInterpret()
+}
+
+abstract class AbstractExpression {
+  # interpret()
+}
+
+class TerminalExpression {
+  + interpret()
+}
+
+class NonterminalExpression {
+  - childExpression
+  + interpret()
+}
+
+class Client {
+}
